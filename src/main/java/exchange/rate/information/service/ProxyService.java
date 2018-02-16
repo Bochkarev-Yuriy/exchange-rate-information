@@ -7,14 +7,24 @@ import org.springframework.web.client.RestTemplate;
 public class ProxyService {
 
 
-	public static void main(String[] args) {
-		ProxyService obj = new ProxyService();
-		obj.getLive();
-	}
+//	public static void main(String[] args) {
+//		ProxyService obj = new ProxyService();
+//		obj.getList();
+//	}
+
 
 	public void getLive() {
 		JSONObject jsonObject = new JSONObject(new RestTemplate().getForObject(buildUrl(), String.class));
 		System.out.println(jsonObject);
+	}
+
+	public void getList() {
+		JSONObject jsonObject = new JSONObject(new RestTemplate().getForObject(buildUrlList(), String.class));
+		System.out.println(jsonObject);
+	}
+
+	public String buildUrlList() {
+		return Constant.ROOT_ADDRESS + Constant.LIST + Constant.PARAM_ACCESS_KEY + Constant.USER_ACCESS_KEY;
 	}
 
 	public String buildUrl() {
