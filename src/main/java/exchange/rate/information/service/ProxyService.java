@@ -1,39 +1,16 @@
 package exchange.rate.information.service;
 
-import exchange.rate.information.constant.Constant;
-import org.json.JSONObject;
-import org.springframework.web.client.RestTemplate;
+import java.util.List;
+import java.util.Map;
 
-public class ProxyService {
+/**
+ * @author Yuriy Bochkarev
+ * @since 16.02.18.
+ */
 
+public interface ProxyService {
 
-//	public static void main(String[] args) {
-//		ProxyService obj = new ProxyService();
-//		obj.getList();
-//	}
+	Map<String, Double> getCurrentRateInformation(String source, List<String> currencies);
 
-
-	public void getLive() {
-		JSONObject jsonObject = new JSONObject(new RestTemplate().getForObject(buildUrl(), String.class));
-		System.out.println(jsonObject);
-	}
-
-	public void getList() {
-		JSONObject jsonObject = new JSONObject(new RestTemplate().getForObject(buildUrlList(), String.class));
-		System.out.println(jsonObject);
-	}
-
-	public String buildUrlList() {
-		return Constant.ROOT_ADDRESS + Constant.LIST + Constant.PARAM_ACCESS_KEY + Constant.USER_ACCESS_KEY;
-	}
-
-	public String buildUrl() {
-		return Constant.ROOT_ADDRESS + Constant.LIVE + Constant.PARAM_ACCESS_KEY + Constant.USER_ACCESS_KEY;
-//		return LIVE +
-//				"?access_key=" + ACCESS_KEY +
-////				"&source=GBP" +
-//				"&currencies=USD,AUD,CAD,PLN,MXN";
-//				+
-//				"&format=1";
-	}
+	Map<String, String> getAllCurrencies();
 }

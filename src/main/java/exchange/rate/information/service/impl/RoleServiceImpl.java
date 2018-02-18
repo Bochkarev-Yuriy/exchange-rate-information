@@ -27,6 +27,7 @@ public class RoleServiceImpl implements RoleService {
     @Autowired
     private RoleDao roleDao;
 
+    @Override
     public void addRole(Role role) {
         try {
             roleDao.persist(role);
@@ -37,6 +38,7 @@ public class RoleServiceImpl implements RoleService {
         }
     }
 
+    @Override
     public Role getRoleByRoleName(String roleName) {
         Role roleFromDB = roleDao.getRoleByRoleName(roleName);
 
@@ -46,14 +48,17 @@ public class RoleServiceImpl implements RoleService {
         return roleFromDB;
     }
 
+    @Override
     public Role getRoleById(Long id) {
         return roleDao.getEntityByKey(id);
     }
 
+    @Override
     public List<Role> getAllRoles() {
         return roleDao.getAllEntity();
     }
 
+    @Override
     public void updateRoles(Role role) {
         try {
             roleDao.update(role);
@@ -64,6 +69,7 @@ public class RoleServiceImpl implements RoleService {
         }
     }
 
+    @Override
     public void deleteRoleById(Long id) {
         try {
             roleDao.deleteByKey(id);

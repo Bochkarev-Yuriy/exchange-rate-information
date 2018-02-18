@@ -2,8 +2,7 @@ package exchange.rate.information.util.initializer;
 
 import exchange.rate.information.model.Role;
 import exchange.rate.information.model.User;
-import exchange.rate.information.service.RoleService;
-import exchange.rate.information.service.UserService;
+import exchange.rate.information.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.HashSet;
@@ -21,6 +20,15 @@ public class TestDataInitializer {
 
 	@Autowired
 	private UserService userService;
+
+	@Autowired
+	private ProxyService proxyService;
+
+	@Autowired
+	private AdapterService adapterService;
+
+	@Autowired
+	private CurrencyService currencyService;
 
 	private void init() {
 
@@ -40,6 +48,17 @@ public class TestDataInitializer {
 
 //		<---Adding users into a DB--->
 		userService.addUser(admin);
+
+//		<---Adding currencies into a DB--->
+		currencyService.addCurrencies(adapterService.mapCastToCurrencies(proxyService.getAllCurrencies()));
+
+//		<------>
+//		Currency fjd = currencyService.getUserByBrief("FJD");
+//		System.out.println(fjd);
+//		System.out.println(fjd);
+
+//		<------>
+//		MonitoringExchangeRate monitoringExchangeRate = new MonitoringExchangeRate();
 
 	}
 }
