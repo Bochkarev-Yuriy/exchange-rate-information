@@ -22,7 +22,13 @@ import java.util.Set;
 public class User implements UserDetails {
 
     @Id
-    @GeneratedValue
+    @TableGenerator(name = "user_gen",
+            table = "sequences",
+            pkColumnName = "name",
+            valueColumnName = "number",
+            pkColumnValue = "users",
+            allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.TABLE, generator = "user_gen")
     @Column(name = "id")
     private Long id;
 
@@ -44,9 +50,9 @@ public class User implements UserDetails {
             inverseJoinColumns = {@JoinColumn(name = "role_id")})
     private Set<Role> roles;
 
-//    @OneToMany(fetch = FetchType.EAGER, targetEntity = MonitoringExchangeRate.class)
+//    @OneToMany(fetch = FetchType.EAGER, targetEntity = MonitoringExchange.class)
 //    @JoinColumn(name = "user_id")
-//    private Set<MonitoringExchangeRate> monitoringExchangeRates;
+//    private Set<MonitoringExchange> monitoringExchangeRates;
 
     public User() {
     }

@@ -33,7 +33,7 @@ public class UserServiceImpl implements UserService {
 			logger.info("Added : " + user);
 		} catch (HibernateException e) {
 			logger.error("Failed to add an user " + user);
-			throw new PersistException("Failed to add an purchase", e);
+			throw new PersistException("Failed to add an user", e);
 		}
 	}
 

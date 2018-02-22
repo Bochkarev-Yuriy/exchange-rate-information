@@ -14,7 +14,13 @@ import javax.persistence.*;
 public class Role implements GrantedAuthority {
 
 	@Id
-	@GeneratedValue
+	@TableGenerator(name = "role_gen",
+			table = "sequences",
+			pkColumnName = "name",
+			valueColumnName = "number",
+			pkColumnValue = "roles",
+			allocationSize = 1)
+	@GeneratedValue(strategy = GenerationType.TABLE, generator = "role_gen")
 	@Column(name = "id")
 	private Long id;
 
@@ -65,6 +71,9 @@ public class Role implements GrantedAuthority {
 
 	@Override
 	public String toString() {
-		return "Role with id " + id + " and name " + name;
+		return "Role{" +
+				"id=" + id +
+				", name='" + name + '\'' +
+				'}';
 	}
 }

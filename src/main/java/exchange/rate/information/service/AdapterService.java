@@ -12,5 +12,7 @@ import java.util.Set;
 
 public interface AdapterService {
 
-	Set<Currency> mapCastToCurrencies(Map<String, String> currenciesMap);
+    Set<Currency> mapCastToCurrencies(Map<String, String> currenciesMap);
+
+    Map<String, Double> proxyCurrentRateInformationMapCastValidCurrentRateInformationMap(Map<String, Double> proxyCurrentRateInformation, String sourceCurrency);
 }

@@ -2,112 +2,114 @@ package exchange.rate.information.model;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.Set;
 
 /**
  * @author Yuriy Bochkarev
- * @since 18.02.18.
+ * @since 19.02.18.
  */
 
 @Entity
 @Table(name = "monitoring_exchange_rate")
 public class MonitoringExchangeRate {
 
-	@Id
-	@GeneratedValue
-	@Column(name = "id")
-	private Long id;
+    @Id
+    @TableGenerator(name = "monitoring_exchange_rate_gen",
+            table = "sequences",
+            pkColumnName = "name",
+            valueColumnName = "number",
+            pkColumnValue = "monitoring_exchange_rate",
+            allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.TABLE, generator = "monitoring_exchange_rate_gen")
+    @Column(name = "id")
+    private Long id;
 
-	@OneToOne(targetEntity = User.class)
-	@JoinColumn(name = "user_id")
-	private User user;
+    @OneToOne(targetEntity = Currency.class)
+    @JoinColumn(name = "currency_id")
+    private Currency currency;
 
-	@OneToOne(targetEntity = Currency.class)
-	@JoinColumn(name = "source_currency_id")
-	private Currency sourceCurrency;
+    @OneToOne(targetEntity = MonitoringExchange.class)
+    @JoinColumn(name = "monitoring_exchange_id")
+    private MonitoringExchange monitoringExchange;
 
-	@Column(name = "date")
-	private Date date;
+    @Column(name = "rate")
+    private Double rate;
 
-	@ManyToMany(fetch = FetchType.EAGER, targetEntity = Currency.class)
-	@JoinTable(name = "source_currency_currencies",
-			joinColumns = {@JoinColumn(name = "monitoring_exchange_rate_id")},
-			inverseJoinColumns = {@JoinColumn(name = "currency_id")})
-	private Set<Currency> currencies;
+    @Column(name = "date")
+    private Date date;
 
-	public Long getId() {
-		return id;
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public User getUser() {
-		return user;
-	}
+    public Currency getCurrency() {
+        return currency;
+    }
 
-	public void setUser(User user) {
-		this.user = user;
-	}
+    public void setCurrency(Currency currency) {
+        this.currency = currency;
+    }
 
-	public Currency getSourceCurrency() {
-		return sourceCurrency;
-	}
+    public MonitoringExchange getMonitoringExchange() {
+        return monitoringExchange;
+    }
 
-	public void setSourceCurrency(Currency sourceCurrency) {
-		this.sourceCurrency = sourceCurrency;
-	}
+    public void setMonitoringExchange(MonitoringExchange monitoringExchange) {
+        this.monitoringExchange = monitoringExchange;
+    }
 
-	public Date getDate() {
-		return date;
-	}
+    public Double getRate() {
+        return rate;
+    }
 
-	public void setDate(Date date) {
-		this.date = date;
-	}
+    public void setRate(Double rate) {
+        this.rate = rate;
+    }
 
-	public Set<Currency> getCurrencies() {
-		return currencies;
-	}
+    public Date getDate() {
+        return date;
+    }
 
-	public void setCurrencies(Set<Currency> currencies) {
-		this.currencies = currencies;
-	}
+    public void setDate(Date date) {
+        this.date = date;
+    }
 
-	@Override
-	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (o == null || getClass() != o.getClass()) return false;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
 
-		MonitoringExchangeRate that = (MonitoringExchangeRate) o;
+        MonitoringExchangeRate that = (MonitoringExchangeRate) o;
 
-		if (id != null ? !id.equals(that.id) : that.id != null) return false;
-		if (user != null ? !user.equals(that.user) : that.user != null) return false;
-		if (sourceCurrency != null ? !sourceCurrency.equals(that.sourceCurrency) : that.sourceCurrency != null)
-			return false;
-		if (date != null ? !date.equals(that.date) : that.date != null) return false;
-		return currencies != null ? currencies.equals(that.currencies) : that.currencies == null;
-	}
+        if (id != null ? !id.equals(that.id) : that.id != null) return false;
+        if (currency != null ? !currency.equals(that.currency) : that.currency != null) return false;
+        if (monitoringExchange != null ? !monitoringExchange.equals(that.monitoringExchange) : that.monitoringExchange != null)
+            return false;
+        if (rate != null ? !rate.equals(that.rate) : that.rate != null) return false;
+        return date != null ? date.equals(that.date) : that.date == null;
+    }
 
-	@Override
-	public int hashCode() {
-		int result = id != null ? id.hashCode() : 0;
-		result = 31 * result + (user != null ? user.hashCode() : 0);
-		result = 31 * result + (sourceCurrency != null ? sourceCurrency.hashCode() : 0);
-		result = 31 * result + (date != null ? date.hashCode() : 0);
-		result = 31 * result + (currencies != null ? currencies.hashCode() : 0);
-		return result;
-	}
+    @Override
+    public int hashCode() {
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (currency != null ? currency.hashCode() : 0);
+        result = 31 * result + (monitoringExchange != null ? monitoringExchange.hashCode() : 0);
+        result = 31 * result + (rate != null ? rate.hashCode() : 0);
+        result = 31 * result + (date != null ? date.hashCode() : 0);
+        return result;
+    }
 
-	@Override
-	public String toString() {
-		return "MonitoringExchangeRate{" +
-				"id=" + id +
-				", user=" + user +
-				", sourceCurrency=" + sourceCurrency +
-				", date=" + date +
-				", currencies=" + currencies +
-				'}';
-	}
+    @Override
+    public String toString() {
+        return "MonitoringExchangeRate{" +
+                "id=" + id +
+                ", currency=" + currency +
+                ", monitoringExchange=" + monitoringExchange +
+                ", rate=" + rate +
+                ", date=" + date +
+                '}';
+    }
 }

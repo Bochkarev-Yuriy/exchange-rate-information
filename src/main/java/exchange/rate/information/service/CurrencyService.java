@@ -15,5 +15,5 @@ public interface CurrencyService {
 
 	void addCurrencies(Collection<Currency> currencies);
 
-	Currency getUserByBrief(String briefName);
+	Currency getCurrencyByBrief(String briefName);
 }

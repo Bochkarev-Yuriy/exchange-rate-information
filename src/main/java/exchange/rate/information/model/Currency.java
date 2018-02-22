@@ -12,7 +12,13 @@ import javax.persistence.*;
 public class Currency {
 
     @Id
-    @GeneratedValue
+    @TableGenerator(name = "currency_gen",
+            table = "sequences",
+            pkColumnName = "name",
+            valueColumnName = "number",
+            pkColumnValue = "currencies",
+            allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.TABLE, generator = "currency_gen")
     @Column(name = "id")
     private Long id;
 

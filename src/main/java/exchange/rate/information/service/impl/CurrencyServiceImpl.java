@@ -43,7 +43,7 @@ public class CurrencyServiceImpl implements CurrencyService {
 	}
 
 	@Override
-	public Currency getUserByBrief(String briefName) {
+	public Currency getCurrencyByBrief(String briefName) {
 		return currencyDao.getCurrencyByBrief(briefName);
 	}
 }

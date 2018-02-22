@@ -17,7 +17,7 @@ public class UrlBuilderServiceImpl implements UrlBuilderService {
 	@Override
 	public String live(String source, List<String> currencies) {
 		StringBuilder liveUrl = new StringBuilder();
-		liveUrl.append(Constant.ROOT_ADDRESS + Constant.LIVE + Constant.PARAM_ACCESS_KEY + Constant.USER_ACCESS_KEY);
+		liveUrl.append(Constant.PROXY_ROOT_ADDRESS + Constant.LIVE + Constant.PARAM_ACCESS_KEY + Constant.USER_ACCESS_KEY);
 		if (source != null) {
 			liveUrl.append(Constant.PARAM_SOURCE).append(source);
 		}
@@ -29,6 +29,6 @@ public class UrlBuilderServiceImpl implements UrlBuilderService {
 
 	@Override
 	public String list() {
-		return Constant.ROOT_ADDRESS + Constant.LIST + Constant.PARAM_ACCESS_KEY + Constant.USER_ACCESS_KEY;
+		return Constant.PROXY_ROOT_ADDRESS + Constant.LIST + Constant.PARAM_ACCESS_KEY + Constant.USER_ACCESS_KEY;
 	}
 }

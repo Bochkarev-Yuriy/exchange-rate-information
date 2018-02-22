@@ -1,7 +1,6 @@
 package exchange.rate.information.util.initializer;
 
-import exchange.rate.information.model.Role;
-import exchange.rate.information.model.User;
+import exchange.rate.information.model.*;
 import exchange.rate.information.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -30,6 +29,9 @@ public class TestDataInitializer {
 	@Autowired
 	private CurrencyService currencyService;
 
+	@Autowired
+	private MonitoringExchangeService monitoringExchangeService;
+
 	private void init() {
 
 //		<---Creating roles--->
@@ -52,13 +54,22 @@ public class TestDataInitializer {
 //		<---Adding currencies into a DB--->
 		currencyService.addCurrencies(adapterService.mapCastToCurrencies(proxyService.getAllCurrencies()));
 
-//		<------>
-//		Currency fjd = currencyService.getUserByBrief("FJD");
-//		System.out.println(fjd);
-//		System.out.println(fjd);
+//		<---Adding MonitoringExchange into a DB--->
+		MonitoringExchange monitoringExchange = new MonitoringExchange();
+		monitoringExchange.setUser(admin);
+		monitoringExchange.setSourceCurrency(currencyService.getCurrencyByBrief("USD"));
+		monitoringExchange.setInterval(90000L);
 
-//		<------>
-//		MonitoringExchangeRate monitoringExchangeRate = new MonitoringExchangeRate();
+		Set<Currency> currencies = new HashSet<>();
+		currencies.add(currencyService.getCurrencyByBrief("FJD"));
+		currencies.add(currencyService.getCurrencyByBrief("BIF"));
+		currencies.add(currencyService.getCurrencyByBrief("MWK"));
+		currencies.add(currencyService.getCurrencyByBrief("BYR"));
+		currencies.add(currencyService.getCurrencyByBrief("AWG"));
+		currencies.add(currencyService.getCurrencyByBrief("USD"));
+		monitoringExchange.setCurrencies(currencies);
+
+		monitoringExchangeService.addMonitoringExchange(monitoringExchange);
 
 	}
 }
