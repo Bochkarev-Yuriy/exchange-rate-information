@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
  */
 
 import java.util.Collection;
+import java.util.List;
 
 @Service
 public class CurrencyServiceImpl implements CurrencyService {
@@ -45,5 +46,10 @@ public class CurrencyServiceImpl implements CurrencyService {
 	@Override
 	public Currency getCurrencyByBrief(String briefName) {
 		return currencyDao.getCurrencyByBrief(briefName);
+	}
+
+	@Override
+	public List<Currency> getAllCurrencies() {
+		return currencyDao.getAllEntity();
 	}
 }

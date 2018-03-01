@@ -58,7 +58,7 @@ public class TestDataInitializer {
 		MonitoringExchange monitoringExchange = new MonitoringExchange();
 		monitoringExchange.setUser(admin);
 		monitoringExchange.setSourceCurrency(currencyService.getCurrencyByBrief("USD"));
-		monitoringExchange.setInterval(90000L);
+		monitoringExchange.setInterval(900000L);
 
 		Set<Currency> currencies = new HashSet<>();
 		currencies.add(currencyService.getCurrencyByBrief("FJD"));

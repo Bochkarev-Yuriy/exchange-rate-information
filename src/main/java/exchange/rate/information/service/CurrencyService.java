@@ -3,6 +3,7 @@ package exchange.rate.information.service;
 import exchange.rate.information.model.Currency;
 
 import java.util.Collection;
+import java.util.List;
 
 /**
  * @author Yuriy Bochkarev
@@ -16,4 +17,6 @@ public interface CurrencyService {
 	void addCurrencies(Collection<Currency> currencies);
 
 	Currency getCurrencyByBrief(String briefName);
+
+	List<Currency> getAllCurrencies();
 }

@@ -52,7 +52,6 @@ public class ExchangeRateInformationJobService extends QuartzJobBean {
     @Override
     protected void executeInternal(JobExecutionContext jobExecutionContext) throws JobExecutionException {
         SpringBeanAutowiringSupport.processInjectionBasedOnCurrentContext(this);
-        System.out.println("Hello JOB!!!");
         if (isRunning) {
             return;
         }

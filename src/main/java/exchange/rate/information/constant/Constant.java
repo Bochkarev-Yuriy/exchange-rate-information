@@ -9,7 +9,10 @@ public class Constant {
     public static final String JSON_FORMAT = "Accept=application/json";
     public static final String CHARSET_UTF_8 = "application/json; charset=UTF-8";
     public static final String ROOT_ADDRESS = "/";
+    public static final String API_ROOT_ADDRESS = "/api";
     public static final String ADD_MONITORING_EXCHANGE = "/addMonitoringExchange";
+    public static final String GET_RATE_BY_TIME_FRAME = "/getRateByTimeFrame";
+    public static final String GET_ALL_CURRENCIES = "/getAllCurrencies";
 
     public static final String PROXY_ROOT_ADDRESS = "http://apilayer.net/api";
     public static final String LIVE = "/live";

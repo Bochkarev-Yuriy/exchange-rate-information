@@ -39,6 +39,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http.csrf().disable().addFilterBefore(filter, CsrfFilter.class);
 		http.authorizeRequests()
 				.antMatchers("/user/**").hasAnyAuthority("USER")
+				.antMatchers("/swagger-ui.html/**").hasAnyAuthority("USER")
+				.antMatchers("/api/**").hasAnyAuthority("USER")
 				.antMatchers("/admin/**").hasAnyAuthority("ADMIN")
 				.and()
 				.formLogin()
@@ -54,10 +56,5 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
 		auth.userDetailsService(authenticationService);
-	}
-
-	@Override
-	public void configure(WebSecurity web) throws Exception {
-		web.ignoring().antMatchers("/v2/api-docs", "/configuration/ui", "/swagger-resources", "/configuration/security", "/swagger-ui.html", "/webjars/**");
 	}
 }

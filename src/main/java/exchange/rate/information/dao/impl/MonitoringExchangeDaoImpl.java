@@ -13,5 +13,4 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 @Repository
 public class MonitoringExchangeDaoImpl extends AbstractDao<Long, MonitoringExchange> implements MonitoringExchangeDao {
-
 }
