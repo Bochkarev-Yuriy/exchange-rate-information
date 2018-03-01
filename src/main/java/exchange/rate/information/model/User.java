@@ -50,10 +50,6 @@ public class User implements UserDetails {
             inverseJoinColumns = {@JoinColumn(name = "role_id")})
     private Set<Role> roles;
 
-//    @OneToMany(fetch = FetchType.EAGER, targetEntity = MonitoringExchange.class)
-//    @JoinColumn(name = "user_id")
-//    private Set<MonitoringExchange> monitoringExchangeRates;
-
     public User() {
     }
 
