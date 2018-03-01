@@ -20,4 +20,4 @@
     >Поля: (id, lastStartJob, monitoringExchange)
   
 <h2>Структура базы данных</h2>
-![Структура базы данных](src/main/resources/DataBaseStructure.png)
+![Структура базы данных](src/main/resources/DataBaseStructure.png "Структура базы данных")
